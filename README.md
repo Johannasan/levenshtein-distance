@@ -8,6 +8,15 @@ För att underlätta arbetsprovet har vi skapat ett projekt konfigurerat för Ma
 
 Gör en fork av detta projekt där ni utför ert arbetsprov och meddela kontaktperson en länk till er fork när ni är färdig med er lösning.
 
+## Exempel på levenshteinavstånd
+| Originaltext | Önskad text | Levenshteinavstånd |
+|--------------|-------------|--------------------|
+| a            | a           | 0                  |
+| a            | A           | 1                  |
+| Kalle        | Carlsson    | 6                  |
+| Alice        | Bob         | 5                  |
+| Catharina    | Katrin      | 4                  |
+
 ## Mer detaljerad information om Levenshteinavstånd
 
 * [Engelska Wikipedia](https://en.wikipedia.org/wiki/Levenshtein_distance)
