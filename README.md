@@ -1,5 +1,7 @@
 # Arbetsprov
-Genom att tillämpa testdriven utveckling (TDD), skriv en metod som returnerar Levenshteinavståndet mellan två godtyckliga strängar.
+Vid CEDAR tillämpar vi testdriven utveckling (TDD) och med detta arbetsprov vill vi se exempel på hur du via TDD designar dina lösningar.
+
+Arbetsprovet går ut på att med hjälp av testdriven utveckling skriva en metod som returnerar Levenshteinavståndet mellan två godtyckliga strängar.
 
 Levenshteinavståndet beräknas som summan av det antal raderingar, infogningar och substitueringar av tecken som krävs för att transformera den ena strängen till den andra.
 
