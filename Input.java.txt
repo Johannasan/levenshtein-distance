@@ -1,0 +1,74 @@
+import java.util.Arrays;
+
+//  Originaltext  	Önskad text	Levenshteinavstånd  Förväntat utfall   Kommentar
+//  a	            	a	        0                   true               Test av samma bokstav (0)
+//  a	            	A	        1                   true               Ersätter en bokstav (1)
+//  Kalle	        Carlsson	6                   true               Ersätter eller raderar 6 bokstäver
+//  Alice	        Bob	        5                   true               Ersätter 3 bokstäver och raderar 2 (5)
+//  Catharina	    	Katrin	      	4                   true               Ersätter eller raderar 4 bokstäver
+//  Johanna       	Sandsten      	8                   true               Ersätter eller raderar alla 8 bokstäver
+//  Johanna       	Sandsten      	6                   false              Testar negativt
+//  Johanna       	Sandsten      	6                   true               Testar fel
+
+class Input {
+    public static void main(String[] args){
+    	String originaltext[] = {"a","a","Kalle","Alice","Catharina","Johanna", "Johanna", "Johanna"};
+    	String onskadtext[] = {"a", "A","Carlsson","Bob","Katrin","Sandsten","Sandsten", "Sandsten"};
+    	int lavstand[] = {0,1,6,5,4,8,6,6};
+    	boolean utfall[] = {true, true, true, true, true, true, false,true};
+    	boolean resultat;
+    	int antalratt = 0;
+    	int antalfel = 0;
+    	
+    	for (int i = 0; i < originaltext.length; i++) {
+    	  int test2 = new EditDistanceRecursive().calculate(originaltext[i], onskadtext[i]);
+    	  System.out.println("Originaltext = " + originaltext[i]);
+    	  System.out.println("Önskad text = " + onskadtext[i]);
+    	  System.out.println("Levenshteinavstånd = " + test2);
+    	  System.out.println ("Förväntat Levenshteinavstånd = "+ lavstand[i]);
+    	  resultat = (lavstand[i]==test2);
+    	  System.out.println("Resultat = " +resultat);
+    	  System.out.println("Förväntat resultat = " +utfall[i]);
+    	  if (resultat==utfall[i]){
+    	    antalratt = antalratt +1;
+    	  }
+    	  else{
+    	    antalfel = antalfel +1;
+    	  }
+    	  System.out.println();
+      } 
+    	System.out.println("Antal testfall med förväntat resultat = " +antalratt);
+    	System.out.println("Antal testfall med fel resutat = " +antalfel);
+    }
+}
+
+
+
+public class EditDistanceRecursive {
+
+   public int calculate(String x, String y) {
+        if (x.isEmpty()) {
+            return y.length();
+        }
+
+        if (y.isEmpty()) {
+            return x.length();
+        } 
+
+        int substitution = calculate(x.substring(1), y.substring(1))+ costOfSubstitution(x.charAt(0), y.charAt(0));
+        int insertion = calculate(x, y.substring(1)) + 1;
+        int deletion = calculate(x.substring(1), y) + 1;
+
+        return min(substitution, insertion, deletion);
+    }
+
+    public static int costOfSubstitution(char a, char b) {
+        return a == b ? 0 : 1;
+    }
+
+    public static int min(int... numbers) {
+        return Arrays.stream(numbers)
+          .min().orElse(Integer.MAX_VALUE);
+    }
+}
+
